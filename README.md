@@ -7,11 +7,10 @@ Unlike Google's build, my build lacks Python support but has libiconv (i.e. set 
 
 To install:
 
-1. Copy `gdb.exe` into `$NDK\toolchains\arm-linux-androideabi-4.8\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb.exe`
-2. Copy `gdbserver` into `$NDK\prebuilt\android-arm\gdbserver\gdbserver`
-
-If you're using gcc 4.9, use `arm-linux-androideabi-4.9` instead.
-Afterwards you may delete `arm-linux-androideabi-gdb-orig.exe` since it's no longer used.
+1. Copy `libiconv-2.dll` to `$NDK\prebuilt\windows-x86_64\bin\libiconv-2.dll`
+2. Copy `gdb.exe` to `$NDK\toolchains\arm-linux-androideabi-4.8\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb-orig.exe`
+3. Copy `gdb.exe` to `$NDK\toolchains\arm-linux-androideabi-4.9\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb-orig.exe`
+4. Copy `gdbserver` to `$NDK\prebuilt\android-arm\gdbserver\gdbserver`
 
 To build:
 
