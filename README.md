@@ -1,25 +1,24 @@
-Win32 build of GDB 7.7 for Android ARM debugging
-================================================
+GDB 7.7 for Android debugging
+=============================
 
-gdb 7.6 (shipped with Android NDK r10c) suffers from [this bug](https://sourceware.org/bugzilla/show_bug.cgi?id=15519) (fixed in gdb 7.7) which makes symbol resolving unbearably slow within C++ code (when the stack frame was in a C++ class).
+Win32 binaries of gdb-7.7 which I've built to work around [Android issue 78239: gdb 7.6 resolves symbols very slowly in C++ stack frames](https://code.google.com/p/android/issues/detail?id=78239).
 
-The symptom:
+Sorry, unlike Google's build, my build lacks Python support..
 
-````(gdb) print global_symbol````
+To install:
 
-takes >30 seconds (when called within a C++ frame),
+2. Copy `gdb.exe` into `$NDK\toolchains\arm-linux-androideabi-4.8\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb.exe`
+3. Copy `gdbserver` into `$NDK\prebuilt\android-arm\gdbserver\gdbserver`
 
-````(gdb) print this->global_symbol````
+If you're using gcc 4.9, use `arm-linux-androideabi-4.9` instead.
+Afterwards you may delete `arm-linux-androideabi-gdb-orig.exe` since it's no longer used.
 
-also takes >30 seconds, but
+To build:
 
-````(gdb) print ::global_symbol````
-
-works returns right away.
-
-This is [Android's gdb-7.7](https://android.googlesource.com/toolchain/gdb.git/+/master/gdb-7.7/) built with MinGW.
-
-To deploy:
-
-* move gdb.exe to $NDK\toolchains\arm-linux-androideabi-4.8\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb.exe
-* move gdbserver to $NDK\prebuilt\android-arm\gdbserver
+1. Install MinGW32 packages `mingw32-base`, `mingw32-gcc-g++` (expat requires) and `msys-bison` (gdb requires)
+2. `mount c:/mingw /mingw`
+3. Build expat:
+   1. `tar xzfv expat-2.1.0.tar.gz && cd expat-2.1.0 && ./configure --prefix=/mingw && make && make install`
+4. Build gdb:
+   1. Clone Android gdb from https://android.googlesource.com/toolchain/gdb.git
+   2. `cd gdb/gdb-7.7 && ./configure --prefix=/mingw --target=arm-linux-androideabi && make`
