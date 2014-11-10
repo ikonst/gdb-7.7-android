@@ -12,12 +12,13 @@ To install:
 3. Copy `gdb.exe` to `$NDK\toolchains\arm-linux-androideabi-4.9\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gdb-orig.exe`
 4. Copy `gdbserver` to `$NDK\prebuilt\android-arm\gdbserver\gdbserver`
 
-To build:
+To build from sources:
 
 1. Install MinGW32 packages `mingw32-base`, `mingw32-gcc-g++` (expat requires), `msys-bison` (gdb requires) and `libiconv-dev` (gdb uses)
 2. `mount c:/mingw /mingw`
 3. Build expat:
-   1. `tar xzfv expat-2.1.0.tar.gz && cd expat-2.1.0 && ./configure --prefix=/mingw && make && make install`
+   1. Download expat (in my case, it was 2.1.0)
+   2. `tar xzfv expat-2.1.0.tar.gz && cd expat-2.1.0 && ./configure --prefix=/mingw && make && make install`
 4. Build gdb:
    1. Clone Android gdb from https://android.googlesource.com/toolchain/gdb.git
    2. `cd gdb/gdb-7.7 && ./configure --prefix=/mingw --target=arm-linux-androideabi && make`
