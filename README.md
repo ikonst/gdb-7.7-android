@@ -14,7 +14,7 @@ To install:
 
 To build from sources:
 
-1. Install MinGW32 packages `mingw32-base`, `mingw32-gcc-g++` (expat requires), `msys-bison` (gdb requires) and `libiconv-dev` (gdb uses)
+1. Install MinGW32 packages `mingw32-base`, `mingw32-gcc-g++` (required by expat), `msys-bison` (required by gdb) and `libiconv-dev` (used by gdb)
 2. `mount c:/mingw /mingw`
 3. Build expat:
    1. Download expat (in my case, it was 2.1.0)
